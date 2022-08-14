@@ -7,6 +7,7 @@
 
 .jumbotron .display-4 {
   font-weight: bold;
+  
 }
 
 nav a {
@@ -187,4 +188,13 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+#inicio {
+  background-color:snow;
+  
+}
+
+#form3Example3,#form3Example4{
+  background-color:aliceblue;
 }
