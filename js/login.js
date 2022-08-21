@@ -4,8 +4,8 @@ const boton = document.querySelector('#boton');
 boton.addEventListener('click', (event) => {
 
 
-const email = document.querySelector('#form3Example3');
-const contraseña = document.querySelector('#form3Example4');
+const email = document.querySelector('#email');
+const contraseña = document.querySelector('#pass');
 
 if (contraseña.value == ''){alert('Ingrese su Contraseña')
 

@@ -193,8 +193,19 @@ a.custom-card:hover {
 #inicio {
   background-color:snow;
   
+  
 }
 
-#form3Example3,#form3Example4{
+#email,#pass{
   background-color:aliceblue;
+}
+
+#autosh:hover{
+ background-color:whitesmoke;
+}
+#mainautos{
+  background-color:snow;
+}
+#bodyautos{
+  background-color:gainsboro;
 }
