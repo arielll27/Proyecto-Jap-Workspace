@@ -1,9 +1,7 @@
 const URL = "https://japceibal.github.io/emercado-api/cats_products/101.json";
 
-
 function colocarHTML(producto) {
-  
-      return ` 
+  return ` 
     <div class="row shadow p-0 rounded overflow-hidden mb-3 bg-white  cursor-active">
         <div class="col-3 p-0">
             <img class="img-thumbnail" src='${producto.image}' alt="">
@@ -20,30 +18,17 @@ function colocarHTML(producto) {
      </div>
   </div>
             `;
-} 
+}
 
+document.addEventListener("DOMContentLoaded", async function () {
+  const listado = document.querySelector(".product-list");
 
+  const listaAutos = await getJSONData(URL);
 
-        document.addEventListener('DOMContentLoaded', async function () {
-            const listado = document.querySelector('.product-list');
-            
-            const listaAutos = await getJSONData(URL);
-            
-            listaAutos.data.products.forEach(auto => {
-                listado.innerHTML += colocarHTML(auto);
-                
-            });
-                
-            });
-    
-
-
-
-    
-
-    
-  
-
+  listaAutos.data.products.forEach((auto) => {
+    listado.innerHTML += colocarHTML(auto);
+  });
+});
 
 /*
 <div class="row shadow p-0 rounded overflow-hidden mb-3 bg-white">
