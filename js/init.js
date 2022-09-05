@@ -40,6 +40,12 @@ let getJSONData = function(url){
         return result;
     });
 }
+document.addEventListener('DOMContentLoaded', function () {
+  const usuario = document.getElementById('usuario')  
+  var user = localStorage.getItem("User");
+  usuario.innerHTML = user;
+  
+})
 
 
 
