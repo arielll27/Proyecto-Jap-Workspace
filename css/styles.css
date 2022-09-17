@@ -204,10 +204,30 @@ a.custom-card:hover {
 
 #autosh:hover{
  background-color:whitesmoke;
+ 
 }
-#mainautos{
+#mainproductos{
   background-color:snow;
 }
-#bodyautos{
+#bodyproductos{
   background-color:gainsboro;
+}
+
+#img-products:hover{
+  background-color:snow;
+
+}
+
+.maingeneral,.producto-name{
+  background-color:whitesmoke;
+}
+.zoom {
+  transition: transform .1s;  
+}
+
+.zoom:hover {
+  transform: scale(1.03);
+}
+.filtro{
+  display: none;
 }

@@ -52,7 +52,14 @@ function setCatID(id) {
   window.location = "products.html";
 }
 
-function showCategoriesList() {
+function setProductID(id) {
+  localStorage.setItem("ProductID", id);
+  window.location = "product-info.html"
+}
+
+
+
+function showProductsList() {
   let htmlContentToAppend = "";
   for (let i = 0; i < currentCategoriesArray.length; i++) {
     let producto = currentCategoriesArray[i];
@@ -65,24 +72,17 @@ function showCategoriesList() {
         (maxPrecio != undefined && parseInt(producto.cost) <= maxPrecio))
     ) {
       htmlContentToAppend += `
-            <div class="row shadow p-0 rounded overflow-hidden mb-3 bg-white  cursor-active">
-        <div class="col-3 p-0">
-            <img class="img-thumbnail" src='${producto.image}' alt="">
-        </div>
-    <div id=autosh class="col-9 d-flex flex-column justify-content-between">
-        <div class="productoNpBody">
-        <h4 class="mt-3 ">${producto.name} -<span class="moneda"> ${producto.currency}</span><span class="precio"> ${producto.cost}</span></h4>
-        <p>${producto.description}</p>
-        </div>
-        <div class="productoFooter d-flex justify-content-between">
-        <p class="text-muted">Cantidad vendidos: <span class="cant text-muted">${producto.soldCount}</span></p>
-        
-       </div>
-     </div>
+  <div onclick="setProductID(${producto.id})" class=" card m-3 shadow p-2 rounded  mb-2  cursor-active productos" id="autosh" style="width: 30rem;">
+        <img id=autosh class=" card-img-top" src='${producto.image}'>
+  <div id=autosh class=" card-body ">
+        <h4 class=" card-title mt-3 ">${producto.name} -<span class ="card-text moneda"> ${producto.currency}</span><span class ="card-text precio"> ${producto.cost}</span></h4>
+        <p class ="card-text">${producto.description}</p>
+        <p class ="card-text text-muted">Cantidad vendidos: <span class ="card-text cant text-muted">${producto.soldCount}</span></p>
+      </div>
   </div>
             `;
     }
-
+   
     document.querySelector(".product-list").innerHTML =
       htmlContentToAppend;
   }
@@ -101,7 +101,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray) {
   );
 
   
-  showCategoriesList();
+  showProductsList();
 }
 
 function agregardescripcion(descripcion){
@@ -117,7 +117,7 @@ var URL = PRODUCTS_URL + categori + EXT_TYPE;
   getJSONData(URL).then(function (resultObj) {
     if (resultObj.status === "ok") {
       currentCategoriesArray = resultObj.data.products;
-      showCategoriesList();
+      showProductsList();
       
     }
     const descripción = document.querySelector('#descr')
@@ -145,7 +145,7 @@ var URL = PRODUCTS_URL + categori + EXT_TYPE;
       minPrecio = undefined;
       maxPrecio = undefined;
 
-      showCategoriesList();
+      showProductsList();
     });
 
   document.getElementById("rangeFilterCountt").addEventListener("click", function () {
@@ -165,6 +165,24 @@ var URL = PRODUCTS_URL + categori + EXT_TYPE;
         maxPrecio = undefined;
       }
 
-      showCategoriesList();
+      showProductsList();
     });
 });
+
+document.addEventListener("keyup", e=>{
+
+  if (e.target.matches("#buscador")){
+
+      if (e.key ==="Escape")e.target.value = ""
+
+      document.querySelectorAll(".productos").forEach(producto =>{
+
+          producto.textContent.toLowerCase().includes(e.target.value.toLowerCase())
+            ?producto.classList.remove("filtro")
+            :producto.classList.add("filtro")
+      })
+
+  }
+
+
+})
