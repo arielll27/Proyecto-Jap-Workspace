@@ -5,6 +5,11 @@ const fecha = new Date();
 const hoy = fecha.toLocaleString();
 const Comments = document.querySelector(".comentarios");
 const botonenviar = document.querySelector("#enviar");
+const ProductRela = document.querySelector('.product-rel')
+
+
+
+
 
 /* Función que inyecta el contenido del producto*/
 function ColocarProducto(producto) {
@@ -115,35 +120,77 @@ function ColocarProducto(producto) {
 `;
 }
 
+function Calificación(num) {
+  htmlToAppend = "";
+  for (i = 0; i < 5; i++) {
+    if (i < num) {
+      htmlToAppend += `<span class="fa fa-star checked"></span>`;
+    } else {
+      htmlToAppend += `<span class="fa fa-star unchecked"></span>`;
+    }
+  }
+  return htmlToAppend;
+}
+
 /* Función que inyecta los comentarios proporcionados por la URL*/
 function Colocarcomentario(comentario) {
   return `
   
   <div class="comentario">
-  <li class="mt-3 list-group-item list-group-item-light"> <strong>${comentario.user}</strong>  - <span >${comentario.dateTime}</span> - <span class="fa fa-star checked">${comentario.score}</span><hr><p class=" list-group-item-light">${comentario.description}</p></li>
+  <li class="mt-3 list-group-item list-group-item-light"> <strong>${comentario.user}</strong>  - <span >${comentario.dateTime.substr(0, 16)}</span> - <span ${Calificación(Math.round(comentario.score / 2))}</span>
+  <hr><p class=" list-group-item-light">${comentario.description}</p></li>
   
   </div>
   
   `;
 }
+function setProductIDD(id) {
+  localStorage.setItem("ProductID", id);
+  window.location = "product-info.html"
+}
+
+/*Funcion que inyecta los productos relacionados*/
+function ProductosRel(producto){
+  return `<div onclick="setProductIDD(${producto.id})" class=" card text-dark  zoom img-thumbnail mb-3 mt-3 cursor-active " style="width: 16rem;">
+  <img src="${producto.image}" class="card-img-top mt-1 ">
+  <div class="card-body">
+    <h6 class="card-title text-center container">${producto.name}</h6>
+    </div>
+</div>`
+}
 
 document.addEventListener("DOMContentLoaded", async function () {
+  
   const Productocont = document.querySelector("#product-descr");
   let productoID = localStorage.getItem("ProductID");
   const URLproductos = PRODUCT_INFO_URL + productoID + EXT_TYPE;
   const URLcomentarios = PRODUCT_INFO_COMMENTS_URL + productoID + EXT_TYPE;
+  
 
-  /*Se Colocan los productos desde la URL*/
+  /*Se Colocan el producto desde la URL*/
   const productodatos = await getJSONData(URLproductos);
   Productocont.innerHTML = ColocarProducto(productodatos.data);
+  
+  /*Se colocan los producos relacionados*/
+  let categorias1 = localStorage.getItem("catID");
+  const URL = PRODUCTS_URL + categorias1 + EXT_TYPE;
+  const productrelacionados = await getJSONData(URL)
+  const productrelacionados2 = productrelacionados.data.products;
+  for(let i = 0; i < productrelacionados2.length; i ++){
+    if(productrelacionados2[i].id != productoID){
+      ProductRela.innerHTML += ProductosRel(productrelacionados2[i]);
+      } 
+    }
 
-  /*Se colocan los comentarios desde la URL*/
+   /*Se colocan los comentarios desde la URL*/
   const comentarios = await getJSONData(URLcomentarios);
   comentarios.data.forEach((coment) => {
     Comments.innerHTML += Colocarcomentario(coment);
   });
 
-  /* Con la escucha click al botonenviar publica el nuevo comentario y lo guarda en localStorage*/
+  
+
+  /* Con la escucha click del botonenviar publica el nuevo comentario y lo guarda en localStorage*/
   botonenviar.addEventListener("click", function () {
     Comments.innerHTML += enviarComentario();
 
@@ -165,6 +212,8 @@ document.addEventListener("DOMContentLoaded", async function () {
   CargarComentario();
 });
 
+
+
 /* Función que carga desde localStorage los comentarios realizados por el usuario para cada producto*/
 function CargarComentario() {
   let listcomentarioscargados =
@@ -178,7 +227,7 @@ function CargarComentario() {
     Comments.innerHTML += `
         
         <div>
-        <li class="mt-3 list-group-item list-group-item-light"> <strong>${comentario.usuario}</strong>  - <span >${comentario.fecha}</span> - <span class="fa fa-star checked">${comentario.puntuacion}</span></li>
+        <li class="mt-3 list-group-item list-group-item-light"> <strong>${comentario.usuario}</strong>  - <span >${comentario.fecha.substr(0, 16)}</span> - <span ${Calificación(puntuacion.value)}</span></li>
         <li class=" list-group-item list-group-item-light">${comentario.descripcion}</li> 
         </div>
         
@@ -191,7 +240,7 @@ function enviarComentario() {
   return `
   
   <div class="comentario">
-  <li class="mt-3 list-group-item list-group-item-light"> <strong>${elusuario}</strong>  - <span >${hoy}</span> - <span class="fa fa-star checked">${puntuacion.value}</span></li>
+  <li class="mt-3 list-group-item list-group-item-light"> <strong>${elusuario}</strong>  - <span >${hoy}</span> - <span ${Calificación(puntuacion.value)}</span></li>
   <li class=" list-group-item list-group-item-light">${inputcomentario.value}</li>
   
   </div>

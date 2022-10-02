@@ -41,10 +41,16 @@ let getJSONData = function(url){
     });
 }
 document.addEventListener('DOMContentLoaded', function () {
+  const cerrarsesion = document.getElementById('cerrarS')
   const usuario = document.getElementById('usuario')  
   var user = localStorage.getItem("User");
   usuario.innerHTML = user;
   
+cerrarsesion.addEventListener('click', function(){
+  localStorage.removeItem('User')
+
+})
+
 })
 
 

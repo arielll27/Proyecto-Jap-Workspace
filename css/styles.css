@@ -222,10 +222,12 @@ a.custom-card:hover {
   background-color:whitesmoke;
 }
 .zoom {
+  
   transition: transform .1s;  
 }
 
 .zoom:hover {
+  background-color:snow;
   transform: scale(1.03);
 }
 .filtro{
