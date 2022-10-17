@@ -227,7 +227,7 @@ a.custom-card:hover {
 }
 
 .zoom:hover {
-  background-color:snow;
+  background-color:darkseagreen;
   transform: scale(1.03);
 }
 .filtro{
