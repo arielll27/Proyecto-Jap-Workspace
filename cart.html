@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 ">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1 navbarcolor ">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -83,33 +83,96 @@
     </div>
     
   </main>
-  <hr class="">
-          <h5 class="mb-3 text-start container">Tipo de Envio</h5>
-          <div class=" text-start my-3 container">
+ 
+  <div id="bodycart" class=" text-start my-3 container">
+            <hr id="bodycart">
+            <h5 class="mb-3 text-start container">Tipo de Envio</h5>
             <div class="custom-control custom-radio">
-              <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked=""
+              <div class="error3"></div>
+              <input id="premiummradio" name="publicationType" type="radio" class="custom-control-input"
                 required="">
+                
               <label class="custom-control-label" for="goldradio">Premium 2 a 5 dias(15%)</label>
             </div>
             <div class="custom-control custom-radio">
-              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
+              <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
               <label class="custom-control-label" for="premiumradio">Express 5 a 8 dias (7%)</label>
             </div>
             <div class="custom-control custom-radio">
               <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
               <label class="custom-control-label" for="standardradio">Standard 12 a 15 dias(5%)</label>
             </div>
-            <h5>Dirección de envío</h5>
-            Calle
-            <input type="text">
-            Número
-            <input type="text">
-            Esquina
-            <input type="text">
+            
+            <hr>
+            <h5 class="mt-4">Dirección de envío</h5>
+            <div class="row g-4 mt-2 mb-3">
+              <div class="col-6">
+                <form action="#">
 
+                </form>
+                <input id="calle" type="text" class="form-control form-floating" placeholder="Calle" >
+                <div class="error"></div>
+              </div>
+              <div class="col-6">
+                <input id="num"type="text" class="form-control" placeholder="Número" >
+                <div class="error"></div>
+              </div>
+              <div class="col-6">
+                <input  id="esquina" type="text" class="form-control" placeholder="Esquina">
+                <div class="error"></div>
+              </div>
+            </form>
+              
+            </div>
+            <hr>
+            <h5 class="mb-4 mt-4">Costos</h5>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Subtotal</h6>
+                  <small class="text-muted">Costo unitario del producto por cantidad</small>
+                </div>
+                <span class="text-muted" id="productCost">-</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Costo de envío</h6>
+                  <small class="text-muted">Según el tipo de envío</small>
+                </div>
+                <span class="text-muted" id="productenvio">-</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <span>Total ($)</span>
+                <strong id="totalCost">-</strong>
+              </li>
+            </ul>
+          <h5 class="mb-4 mt-4">Forma de Pago</h5>
+          <p class="fw-bold"id="formadepago">No ha seleccionado</p><div class="error2"></div>
+            
+          <div class="formasdepago d-flex">
+
+            
+            
+              <button
+                type="button"
+                class="btn btn-link "
+                data-bs-toggle="modal"
+                data-bs-target="#modalpagos"
+                id="terms-agree">
+              Seleccionar
+              </button>
+              <div class="error"></div>
+            
+            
           </div>
-  <footer class="text-muted">
-    <div class="container">
+          <div class="d-grid mt-2 col-5 mx-auto ">
+            <button id="Finalizarcompra"class="btn btn-primary mb-3" type="button">Finalizar compra</button>
+            
+          </div>
+          </div>
+          
+  <footer class="text-muted ">
+    <div class="container ">
       <p class="float-end">
         <a href="#">Volver arriba</a>
       </p>
@@ -118,6 +181,49 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+  <div class="modal fade" data-bs-backdrop="static" id="modalpagos" tabindex="-1" aria-hidden="true" b>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5">Forma de pago</h1><hr>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="tarjdisabled">
+          <input id="tarjcred" type="radio"> Tarjeta de Crédito</input>
+          <input id="tarjnum" class="form-control form-control-sm mb-2 mt-2" type="text" placeholder="Número de Tarjeta" aria-label=".form-control-sm example">
+          <div class="error"></div>
+          <input id="segcod"class="form-control form-control-sm mb-2" type="text" placeholder="Código de Seg." aria-label=".form-control-sm example">
+          <div class="error"></div>
+          <input id="vencimiento" class="form-control form-control-sm mb-2" type="text" placeholder="Vencimiento (MM/AA)" aria-label=".form-control-sm example">
+          <div class="error"></div>
+          </div>
+          
+          <hr>
+              <div id="disablee">
+                <input id="transfbanc" type="radio"> Transferencia bancaria</input>
+              
+                <input id="numcuenta" class="form-control form-control-sm mt-2 mb-2 disabled" type="text"  placeholder="Número de cuenta" aria-label=".form-control-sm example">
+                <div class="error"></div>
+              </div>
+              
+            
+            <div class="d-grid mt-2 col-5 mx-auto ">
+              <button id="cerrarpagos" type="submit" class="btn btn-primary mb-3 " data-bs-dismiss="modal">Cerrar</button>
+
+            </div>
+          </div>
+         </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>
@@ -129,6 +235,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

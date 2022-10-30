@@ -233,3 +233,23 @@ a.custom-card:hover {
 .filtro{
   display: none;
 }
+
+#bodycart{
+  background-color:whitesmoke;
+  border-radius: 1%;
+  
+}
+.error {
+  color: rgb(212, 60, 60);
+}
+.error2 {
+  color: rgb(212, 60, 60);
+}
+.error3 {
+  color: rgb(212, 60, 60);
+}
+.error4{
+  color: rgb(212, 60, 60);
+  
+}
+
