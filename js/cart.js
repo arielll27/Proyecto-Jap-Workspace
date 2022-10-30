@@ -74,14 +74,12 @@ document.addEventListener('DOMContentLoaded', async function traerdata(){
   const cantidad2 = document.getElementById('prodcount');
   const costo2 = document.getElementById('sub');
   const error4 = document.querySelector('.error4')
-
-  /*validación de todos los datos necesarios para realizar la compra*/
   inputcompra.addEventListener("click", function () {
     validacion()
     
     
     if((calle.value !== "" &&  númerocasa.value !== "" && esquina.value !=="" && formadepagos.textContent !== "No ha seleccionado" && cantidad2.value !== "0" && codigoseg.disabled && nmerotarj.disabled && fvencimiento.disabled && numcuenta.value !=="") || (calle.value !== "" &&  númerocasa.value !== "" && esquina.value !=="" && formadepagos.textContent !== "No ha seleccionado" && cantidad2.value !== "0" && numcuenta.disabled && nmerotarj.value !=="" && codigoseg.value !=="" && fvencimiento.value !=="") ){
-      Swal.fire(
+      swal(
         'Listo!',
         'Tu compra se realizó con éxito!',
         'success'
