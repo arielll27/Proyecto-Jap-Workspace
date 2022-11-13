@@ -74,6 +74,8 @@ document.addEventListener('DOMContentLoaded', async function traerdata(){
   const cantidad2 = document.getElementById('prodcount');
   const costo2 = document.getElementById('sub');
   const error4 = document.querySelector('.error4')
+
+  /*validación de todos los datos necesarios para realizar la compra con éxito*/
   inputcompra.addEventListener("click", function () {
     validacion()
     

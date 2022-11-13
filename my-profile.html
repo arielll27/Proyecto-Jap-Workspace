@@ -51,7 +51,7 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="usuario">
                   <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
-                  <li ><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+                  <li ><a id ="myperf" class="dropdown-item" >Mi perfil</a></li>
                   <li><a class="dropdown-item" href="index.html" id="cerrarS">Cerrar sesión</a></li>
                 </ul>
               </li>
@@ -64,8 +64,99 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <h3 class="text-center mt-3 mb-3">Perfil</h3>
+      <section style="background-color:ghostwhite">
+        <div class="container py-5">
+          <div class="row">
+            <div class="col">
+            </div>
+          </div>
+      
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img id="imgperfil" src="img/img_perfil.png" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                
+                  
+                  <div class="mb-2">
+                    <input type="file" class="small mt-5" id="cambiarimg">
+                    
+                  </div>
+                </div>
+              </div>
+             
+            </div>
+            
+            <div class="col-lg-8">
+              <div class="card mb-3">
+                <div class="card-body">
+                  <form>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="mb-0 ">Primer Nombre*</p>
+                      <p class="mb-0 mt-4">Segundo Nombre</p>
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="form-control" type="text"  id="primernombre" value=""></input>
+                      <input class="form-control mt-3" type="text" id="segundonombre" value=""></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="mb-0 ">Primer Apellido*</p>
+                      <p class="mb-0 mt-4">Segundo Apellido</p>
+                      
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="form-control" type="text" id="primerapellido" value=""></p>
+                      <input class="form-control" type="text" id="segundoapellido" value=""></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="mb-0 ">E-mail</p>
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="form-control" type="text" id="emailcontacto" value=""  ></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <p class="mb-0">Teléfono de contacto* </p>
+                      
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="form-control" type="text" class="text-muted mb-0" id="telcontacto" value=""></p>
+                      
+                    </div>
+                  </div>
+                  
+                </div>
+              </form>
+              </div>
+              <div class="row d-flex justify-content-between">
+                <div class="col">
+
+                  
+                  <button type="button" class="btn btn-primary" id="btnGuardar">Guardar Datos</button>
+                </div>
+              </div>
+                  </div>
+                </div>
+                
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       </div>
     </div>
   </main>
@@ -82,6 +173,7 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/my-profile.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 
 </html>
